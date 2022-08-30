@@ -2,10 +2,11 @@ const express = require("express");
 var requestIp = require("request-ip");
 
 const app = express();
+const PORT = process.env.port || 5000;
 
 app.get("/", function (req, res) {
   var clientIp = requestIp.getClientIp(req);
-  res.send(clientIp);
+  res.json({ ip: clientIp });
 });
 
-app.listen(3000, () => console.log("server runing on 3000"));
+app.listen(PORT, () => console.log("server runing on " + PORT));
